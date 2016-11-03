@@ -55,6 +55,22 @@ public class Permissions extends CordovaPlugin {
 
     @Override
     public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) throws JSONException {
+        /////////// BO Permission popup invoke ///////////////////
+
+        // The request code used in ActivityCompat.requestPermissions()
+        // and returned in the Activity's onRequestPermissionsResult()
+        //Log.e(TAG, "Invalid action : ");
+        int PERMISSION_ALL = 1;
+        if (permissions != null && permissions.length > 0) {
+            //get the Application context
+            Context context=this.cordova.getActivity().getApplicationContext();
+            if(!hasPermissions(context, permissions)){
+                Activity act = this.cordova.getActivity();
+                ActivityCompat.requestPermissions(act, permissions, PERMISSION_ALL);
+            }
+        }
+        /////////// EO Permission popup invoke ///////////////////
+        
         if (permissionsCallback == null) {
             return;
         }
