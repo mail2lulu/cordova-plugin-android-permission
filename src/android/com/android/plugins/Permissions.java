@@ -7,6 +7,8 @@ import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.app.Activity;
+import android.support.v4.app.ActivityCompat;
 
 /**
  * Created by JasonYang on 2016/3/11.
@@ -51,6 +53,16 @@ public class Permissions extends CordovaPlugin {
             return true;
         }
         return false;
+    }
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
