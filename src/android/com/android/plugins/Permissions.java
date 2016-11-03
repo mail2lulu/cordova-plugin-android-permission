@@ -1,5 +1,6 @@
 package com.android.plugins;
 
+import android.content.pm.PackageManager;
 import android.os.Build;
 
 import org.apache.cordova.CallbackContext;
@@ -9,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.Activity;
 import android.support.v4.app.ActivityCompat;
+import android.content.Context;
 
 /**
  * Created by JasonYang on 2016/3/11.
